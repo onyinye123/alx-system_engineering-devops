@@ -1,1 +1,1 @@
-my initial script
+shell basics
