@@ -1,2 +1,2 @@
- #!/bin/bash
-echo "$(groups)"
+#!/bin/bash
+echo  "$(groups )"
