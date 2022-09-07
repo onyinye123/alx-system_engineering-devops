@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(grep bin /etc/passwd | wc -1)
+echo $(grep bin /etc/passwd | wc  -1)
