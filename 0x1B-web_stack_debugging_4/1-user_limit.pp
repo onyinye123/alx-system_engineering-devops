@@ -1,14 +1,12 @@
-# Increases the amount of traffic an Nginx server can handle
+# Fix problem of high amount files opened
 
-# Increase the ULIMIT of the default file
-exec { 'fix--for-nginx':
-  command => 'sed -i "s/15/4096/" /etc/default/nginx',
-  path    => '/usr/local/bin/:/bin'
+exec {'replace-1':
+  provider => shell,
+  command  => 'sudo sed -i "s/nofile 5/nofile 50000/" /etc/security/limits.conf',
+  before   => Exec['replace-2'],
 }
 
-#restart Nginx
-
-exec { 'nginx-restart':
-  command => 'nginx restart',
-  path    => '/etc/init.d/'
+exec {'replace-2':
+  provider => shell,
+  command  => 'sudo sed -i "s/nofile 4/nofile 40000/" /etc/security/limits.conf',
 }
